@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>Incheon Office Rental</title> <!-- 🔧 페이지 타이틀 -->
+  <meta name="description" content="송도유원지 내 인천 중고차매매단지 사무실 임대. $300부터 시작합니다. 다양한 언어로 지원됩니다." /> <!-- 🔧 메타 설명 -->
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" /> <!-- 🔧 파비콘 교체 -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Incheon Office Rental in Songdo Car Market" />
+  <meta property="og:description" content="Office rental starting at $300 in Songdo Used Car Market, Incheon." />
+  <meta property="og:url" content="https://song-do.com" /> <!-- 🔧 실제 도메인 -->
+  <meta property="og:image" content="https://metatags.io/images/meta-tags.png" /> <!-- 🔧 대표 이미지 -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Incheon Office Rental in Songdo Car Market" />
+  <meta name="twitter:description" content="Office rental starting at $300 in Songdo Used Car Market, Incheon." />
+  <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background: linear-gradient(135deg, #f8fbff, #ecf2ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .product-image {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+    }
+    .product-image img {
+      width: 100%;
+      max-height: calc(100vh - 180px);
+      object-fit: contain;
+    }
+    .content {
+      padding: 1rem 1.5rem 0;
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #4e54c8;
+      margin-bottom: 0.5rem;
+    }
+    .desc {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .map-container {
+      width: 100%;
+      max-width: 900px;
+      height: 450px;
+      margin-bottom: 120px; /* footer 공간 확보 */
+    }
+    .map-container iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(90, 132, 255, 0.3);
+      transition: all 0.3s ease;
+      min-width: 180px;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .contact-button:hover {
+      background: linear-gradient(135deg, #8f94fb, #4e54c8);
+      transform: translateY(-2px);
+    }
+    .contact-button:active {
+      transform: scale(0.97);
+    }
+    .phone-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+      user-select: text;
+      pointer-events: none;
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whatsapp-icon {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+    @media (max-width: 768px) {
+      footer {
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 1rem;
+      }
+      .contact-button, .phone-text {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="product-image">
+    <img src="product.jpg" alt="인천 중고차매매단지 사무실" />
+  </div>
+
+  <div class="content">
+    <div class="title" id="title">인천 중고차매매단지 사무실 임대</div>
+    <div class="desc" id="desc">한달 $300부터 시작하는 송도유원지 내 사무실 임대</div>
+  </div>
+
+  <div class="map-container" aria-label="능허대로 187 위치 지도">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.7804099052237!2d126.64737861159205!3d37.41866487196074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b782af8794c05%3A0x662387d70955137e!2z7J247LKc6rSR7Jet7IucIOyXsOyImOq1rCDriqXtl4jrjIDroZwgMTg3!5e0!3m2!1sko!2skr!4v1752427368589!5m2!1sko!2skr"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+  </div>
+
+  <footer>
+    <!-- 모바일에서 전화번호는 링크, 데스크탑은 텍스트 -->
+  </footer>
+
+  <script>
+    const texts = {
+      ko: {
+        title: "인천 중고차매매단지 사무실 임대",
+        description: "한달 $300부터 시작하는 송도유원지 내 사무실 임대",
+        contactPhone: "📞 문의하기 : 010-8116-0896", // 🔧 전화번호
+        contactEmail: "📧 dearsecret1217@gmail.com", // 🔧 이메일 주소
+        contactWhatsApp: "왓츠앱 문의"
+      },
+      en: {
+        title: "Office for Rent in Songdo Car Market, Incheon",
+        description: "Office rental starting at $300 per month in Songdo Used Car Market.",
+        contactPhone: "📞 Contact: 010-8116-0896",
+        contactEmail: "📧 dearsecret1217@gmail.com",
+        contactWhatsApp: "WhatsApp Contact"
+      },
+      ar: {
+        title: "تأجير مكاتب في سوق السيارات إنشون - سونغدو",
+        description: "تبدأ أسعار تأجير المكاتب من 300 دولار شهريًا في سوق سيارات سونغدو.",
+        contactPhone: '📞 اتصل: <span dir="ltr">010-8116-0896</span>',
+        contactEmail: "📧 dearsecret1217@gmail.com",
+        contactWhatsApp: "WhatsApp Contact"
+      },
+      ru: {
+        title: "Аренда офиса в Инчхоне (рынок автомобилей Сонгдо)",
+        description: "Аренда офисов от $300 в месяц на авторынке Сонгдо, Инчхон.",
+        contactPhone: "📞 Контакт: 010-8116-0896",
+        contactEmail: "📧 dearsecret1217@gmail.com",
+        contactWhatsApp: "WhatsApp Contact"
+      }
+    };
+
+    const userLang = navigator.language.slice(0, 2);
+    const content = texts[userLang] || texts["ko"];
+
+    document.getElementById("title").textContent = content.title;
+    document.getElementById("desc").textContent = content.description;
+
+    const footer = document.querySelector("footer");
+    const whatsappNumber = "821044768444"; // 국가번호 포함 (한국 82)
+
+    function getWhatsAppIcon() {
+      return `
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path d="M20.52 3.48A11.887 11.887 0 0012 0C5.373 0 0 5.373 0 12c0 2.12.55 4.146 1.6 5.95L0 24l6.29-1.58A11.937 11.937 0 0012 24c6.627 0 12-5.373 12-12 0-3.21-1.25-6.22-3.48-8.52zm-8.67 16.57c-2.58 0-4.96-1.35-6.24-3.59l-.44-.75-3.72.98.99-3.62-.29-.63A8.597 8.597 0 013.37 8.3c0-4.74 3.87-8.61 8.63-8.61 2.3 0 4.45.9 6.06 2.53a8.466 8.466 0 012.53 6.06c0 4.74-3.87 8.61-8.61 8.61zm4.77-6.35c-.26-.13-1.54-.76-1.77-.85-.23-.09-.4-.13-.57.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.07-.26-.13-1.1-.41-2.09-1.29-.77-.68-1.29-1.52-1.44-1.78-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.44.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.44-.06-.13-.57-1.37-.78-1.87-.2-.49-.4-.42-.57-.43-.15-.01-.32-.01-.5-.01-.17 0-.44.06-.67.32-.23.26-.9.87-.9 2.12 0 1.25.92 2.46 1.05 2.63.13.17 1.82 2.77 4.41 3.88.62.27 1.1.43 1.48.55.62.19 1.18.16 1.62.1.49-.07 1.54-.63 1.76-1.24.23-.62.23-1.15.16-1.26-.06-.11-.23-.17-.48-.3z"/>
+        </svg>
+      `;
+    }
+
+    function renderContact(isMobile) {
+      if (isMobile) {
+        footer.innerHTML = `
+          <a href="tel:01081160896" class="contact-button">${content.contactPhone}</a>
+          <a href="mailto:dearsecret1217@gmail.com" class="contact-button">${content.contactEmail}</a>
+          <a href="https://wa.me/${whatsappNumber}" target="_blank" rel="noopener" class="contact-button">
+            ${getWhatsAppIcon()} ${content.contactWhatsApp}
+          </a>
+        `;
+      } else {
+        footer.innerHTML = `
+          <div class="phone-text">${content.contactPhone}</div>
+          <a href="mailto:dearsecret1217@gmail.com" class="contact-button">${content.contactEmail}</a>
+          <a href="https://wa.me/${whatsappNumber}" target="_blank" rel="noopener" class="contact-button">
+            ${getWhatsAppIcon()} ${content.contactWhatsApp}
+          </a>
+        `;
+      }
+    }
+
+    const mql = window.matchMedia("(max-width: 768px)");
+    renderContact(mql.matches);
+
+    if (mql.addEventListener) {
+      mql.addEventListener("change", e => renderContact(e.matches));
+    } else if (mql.addListener) {
+      mql.addListener(e => renderContact(e.matches));
+    }
+  </script>
+</body>
+</html>
