@@ -34,12 +34,17 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      padding-bottom: 180px;
     }
     .product-image {
-      width: 100vw;
+      width: 100%;
+      max-width: 900px; /* content와 같은 최대 너비 */
+      margin-left: auto;
+      margin-right: auto;
       display: flex;
       justify-content: center;
     }
+
     .product-image img {
       width: 100%;
       max-height: calc(100vh - 180px);
@@ -62,16 +67,36 @@
       font-size: 1.1rem;
       margin-bottom: 1rem;
     }
+
     .map-container {
       width: 100%;
       max-width: 900px;
       height: 450px;
-      margin-bottom: 140px; /* footer 공간 확보 + 여유 */
+      margin-bottom: 140px;
+      position: relative;  
+      z-index: 1;
     }
-    .map-container iframe {
-      border: 0;
+    #map-section {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
       width: 100%;
+    }
+    #main-section, #map-section {
+      margin-top: 1rem; /* 탭바 밑 공간 확보 */
+      margin-bottom: 2rem;
+    }
+
+    .map-container iframe {
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 900px;
       height: 100%;
+      border: 0;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     footer {
       position: fixed;
@@ -167,28 +192,79 @@
       object-fit: contain;
       display: block;
     }
+
+    .tab-bar {
+      display: flex;
+      width: 100%; 
+      margin-top: 0.5rem;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+      border-bottom: 2px solid #ccc;
+      position: relative;
+      z-index: 2;
+      background-color: #f5f5f5;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #555; /* 중간 회색 */
+      background: #e0e0e0; /* 탭 기본 배경 - 연한 회색 */
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+
+    .tab:hover {
+      background: #d0d0d0; /* 마우스 오버 시 좀 더 진한 회색 */
+    }
+
+    .tab.active {
+      background: #fff; /* 활성 탭은 흰색 배경 */
+      border-bottom: 3px solid #888; /* 어두운 회색 밑줄 */
+      color: #333; /* 진한 회색 텍스트 */
+    }
   </style>
 </head>
 <body>
-  <div class="product-image">
-    <img src="product.jpg" alt="인천 중고차매매단지 사무실" />
-  </div>
 
-  <div class="content">
-    <div class="title" id="title">인천 중고차매매단지 사무실 임대</div>
-    <div class="desc" id="desc">한달 $300부터 시작하는 송도유원지 내 사무실 임대</div>
-  </div>
 
-  <div class="map-container" aria-label="능허대로 187 위치 지도">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.7804099052237!2d126.64737861159205!3d37.41866487196074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b782af8794c05%3A0x662387d70955137e!2z7J247LKc6rSR7Jet7IucIOyXsOyImOq1rCDriqXtl4jrjIDroZwgMTg3!5e0!3m2!1sko!2skr!4v1752427368589!5m2!1sko!2skr"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      aria-hidden="false"
-      tabindex="0"
-    ></iframe>
-  </div>
+  <body>
+    <div class="tab-bar" style="width:100%; margin: 0 auto;">
+      <button class="tab active" data-tab="main">Home</button>
+      <button class="tab" data-tab="map">Location</button>
+    </div>
+  
+    <div id="main-section">
+      <div class="product-image">
+        <img src="product.jpg" alt="인천 중고차매매단지 사무실" />
+      </div>
+    
+      <div class="content">
+        <div class="title" id="title">인천 중고차매매단지 사무실 임대</div>
+        <div class="desc" id="desc">한달 $300부터 시작하는 송도유원지 내 사무실 임대</div>
+      </div>
+    </div>
+  
+    <div id="map-section" style="display: none;">
+      <div class="map-container" aria-label="능허대로 187 위치 지도">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.7804099052237!2d126.64737861159205!3d37.41866487196074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b782af8794c05%3A0x662387d70955137e!2z7J247LKc6rSR7Jet7IucIOyXsOyImOq1rCDriqXtl4jrjIDroZwgMTg3!5e0!3m2!1sko!2skr!4v1752427368589!5m2!1sko!2skr"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+      </div>
+    </div>
+  </body>
+  
+
+  
 
   <footer>
     <!-- 모바일에서 전화번호는 링크, 데스크탑은 텍스트 -->
@@ -238,6 +314,18 @@
 
     const footer = document.querySelector("footer");
     const whatsappNumber = "821044768444"; // 국가번호 포함 (한국 82)
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const selected = tab.dataset.tab;
+        document.getElementById("main-section").style.display = selected === "main" ? "block" : "none";
+        document.getElementById("map-section").style.display = selected === "map" ? "block" : "none";
+      });
+    });
+
 
     function getWhatsAppIcon() {
       return `
