@@ -50,13 +50,6 @@
       max-height: calc(100vh - 180px);
       object-fit: contain;
     }
-    .github-image {
-      width: 100%;
-      height: auto;
-      max-width: 200px; 
-      margin: 8px 0;
-      object-fit: contain;
-    }
     .content {
       padding: 1rem 1.5rem 0;
       max-width: 900px;
@@ -525,8 +518,9 @@
           const img = document.createElement('img');
           img.src = file.download_url;
           img.alt = file.name;
-          img.style.maxWidth = '200px';
-          img.style.margin = '8px';
+          img.style.width = '100%';
+          img.style.objectFit = 'contain';
+          img.style.marginBottom = '16px'
           container.appendChild(img);
         }
       });
