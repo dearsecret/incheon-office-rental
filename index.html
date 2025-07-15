@@ -230,9 +230,9 @@
     .iframe-border-wrapper {
       position: relative;
       width: 100vw;
+      max-width: 550px;
       padding-bottom: 58%;
-      /* margin-bottom: 56.25%;*/
-      margin: 0 auto; 
+      margin: 0 auto 24px;  
       border: 3px solid #4e54c8; 
       border-radius: 12px; 
       overflow: hidden;
@@ -245,18 +245,77 @@
       width: 100%;
       height: 100%;
     }
+
+    #sheet-table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 1rem;
+    }
+
+    /* 테이블 본체 */
+    .sheet-table {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      font-family: 'Arial', 'Helvetica', sans-serif;
+      font-size: 0.95rem;
+      background-color: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      min-width: 600px;
+    }
+
+    /* 헤더 */
+    .sheet-table thead {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+    }
+
+    /* 셀 기본 스타일 */
+    .sheet-table th,
+    .sheet-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    /* zebra striping */
+    .sheet-table tbody tr:nth-child(odd) {
+      background-color: #f9f9ff;
+    }
+
+    /* hover 효과 */
+    .sheet-table tbody tr:hover {
+      background-color: #eef0ff;
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 768px) {
+      .sheet-table {
+        font-size: 0.85rem;
+      }
+
+      .sheet-table th,
+      .sheet-table td {
+        padding: 8px 12px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="tab-bar" style="width:100%; margin: 0 auto;">
-    <button class="tab active" data-tab="main">Home</button>
-    <button class="tab" data-tab="map">Location</button>
+    <button class="tab active" data-tab="main">HOME</button>
+    <button class="tab" data-tab="map">INFO</button>
   </div>
   
   <div id="main-section">
     <div class="product-image">
       <img src="product.jpg" alt="인천 중고차매매단지 사무실" />
+
+      
     </div>
 
     <div class="content">
@@ -264,19 +323,24 @@
       <div class="desc" id="desc">한달 $300부터 시작하는 송도유원지 내 사무실 임대</div>
     </div>
 
+    <div id="github-image-gallery"></div>
+
     <div class="iframe-border-wrapper">
       <iframe
           class="iframe-inner"
-          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTAqWAzBdo0DIR6omFHJCA7RxPFzJeLcZCwlNIaqD4xBmiETgYwhF3O9ertcmtLFHUHbS6kqPT1_8Oe/pubhtml?gid=0&range=B2:G20&chrome=false&single=true&widget=false&headers=false&gridlines=false&rm=minimal"
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTAqWAzBdo0DIR6omFHJCA7RxPFzJeLcZCwlNIaqD4xBmiETgYwhF3O9ertcmtLFHUHbS6kqPT1_8Oe/pubhtml?gid=1103995799&range=B2:F20&chrome=false&single=true&widget=false&headers=false&gridlines=false&rm=minimal"
           frameborder="0"
           scrolling="no"
           aria-label="Google Spreadsheet"
           allowfullscreen
         ></iframe>
     </div>
+    
   </div>
 
   <div id="map-section" style="display: none;">
+    <div class="table-wrapper" id="sheet-table-wrapper"></div>
+    
     <div class="map-container" aria-label="능허대로 187 위치 지도">
       <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.7804099052237!2d126.64737861159205!3d37.41866487196074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b782af8794c05%3A0x662387d70955137e!2z7J247LKc6rSR7Jet7IucIOyXsOyImOq1rCDriqXtl4jrjIDroZwgMTg3!5e0!3m2!1sko!2skr!4v1752427368589!5m2!1sko!2skr"
@@ -300,8 +364,8 @@
         description: "한달 $300부터 시작하는 송도유원지 내 사무실 임대",
         contactPhone: "📞 문의하기 : 010-8116-0896", // 🔧 전화번호
         contactEmail: "📧 dearsecret1217@gmail.com", // 🔧 이메일 주소
-        contactWhatsApp: "WhatsApp 문의하기",
-        contactKakao: "카카오톡 문의하기", 
+        contactWhatsApp: "WhatsApp 문의",
+        contactKakao: "카카오톡 문의", 
       },
       en: {
         title: "Office for Rent in Songdo Car Market, Incheon",
@@ -377,37 +441,46 @@
     }
 
     function renderContact(isMobile) {
-      if (isMobile) {
-        footer.innerHTML = `
-          <a href="tel:01081160896" class="contact-button">${content.contactPhone}</a>
-          <!-- <a href="mailto:dearsecret1217@gmail.com" class="contact-button">${content.contactEmail}</a> -->
-          <a href="https://wa.me/${whatsappNumber}" target="_blank" rel="noopener" class="contact-button whatsapp-button">
-            <span class="whatsapp-icon-wrapper">${getWhatsAppIcon()}</span> ${content.contactWhatsApp}
-          </a>
-            <a href="https://pf.kakao.com/_xlnBmn/chat" target="_blank" rel="noopener" class="contact-button kakao-button">
-            <span class="kakao-icon-wrapper">${getKakaoIcon()}</span> ${content.contactKakao}
-          </a>
-            <a href="https://instagram.com/admin.krkr" target="_blank" rel="noopener" class="contact-button insta-button">
-            <span class="kakao-icon-wrapper">${getInstaIcon()}</span> Instagram
-          </a>
-        `;
+    footer.innerHTML = `
+      <a href="https://wa.me/${whatsappNumber}" target="_blank" rel="noopener" class="contact-button whatsapp-button">
+        <span class="whatsapp-icon-wrapper">${getWhatsAppIcon()}</span> ${content.contactWhatsApp}
+      </a>
+      <a href="https://pf.kakao.com/_xlnBmn/chat" target="_blank" rel="noopener" class="contact-button kakao-button">
+        <span class="kakao-icon-wrapper">${getKakaoIcon()}</span> ${content.contactKakao}
+      </a>
+      <a href="https://instagram.com/admin.krkr" target="_blank" rel="noopener" class="contact-button insta-button">
+        <span class="kakao-icon-wrapper">${getInstaIcon()}</span> Instagram
+      </a>
+    `;
+
+    // map-section 상단 전화번호 표시
+    const mapSection = document.getElementById("map-section");
+    const oldMapContact = mapSection.querySelector(".map-contact");
+    if (oldMapContact) oldMapContact.remove();
+
+    const mapContact = document.createElement("div");
+    mapContact.className = "map-contact";
+    mapContact.style.marginBottom = "1rem";
+    mapContact.style.textAlign = "center";
+    mapContact.style.fontSize = "1rem";
+    mapContact.style.fontWeight = "bold";
+
+    if (isMobile) {
+        const phoneLink = document.createElement("a");
+        phoneLink.href = "tel:01081160896";
+        phoneLink.textContent = content.contactPhone;
+        phoneLink.style.textDecoration = "none";
+        phoneLink.style.color = "#333";
+        mapContact.appendChild(phoneLink);
       } else {
-        footer.innerHTML = `
-          <div class="phone-text">${content.contactPhone}</div>
-          <!-- <a href="mailto:dearsecret1217@gmail.com" class="contact-button">${content.contactEmail}</a> -->
-          <a href="https://wa.me/${whatsappNumber}" target="_blank" rel="noopener" class="contact-button whatsapp-button">
-            <span class="whatsapp-icon-wrapper">${getWhatsAppIcon()}</span> ${content.contactWhatsApp}
-          </a>
-            <a href="https://pf.kakao.com/_xlnBmn/chat" target="_blank" rel="noopener" class="contact-button kakao-button">
-            <span class="kakao-icon-wrapper">${getKakaoIcon()}</span> ${content.contactKakao}
-          </a>
-          </a>
-            <a href="https://instagram.com/admin.krkr" target="_blank" rel="noopener" class="contact-button insta-button">
-            <span class="kakao-icon-wrapper">${getInstaIcon()}</span> Instagram
-          </a>
-        `;
+        mapContact.textContent = content.contactPhone;
       }
+
+      mapSection.prepend(mapContact);
     }
+
+
+
 
     const mql = window.matchMedia("(max-width: 768px)");
     renderContact(mql.matches);
@@ -418,7 +491,124 @@
       mql.addListener(e => renderContact(e.matches));
     }
 
-  
+    
+
+    async function loadGitHubImages(username, repo, folderPath, containerId) {
+    const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${folderPath}`;
+    const container = document.getElementById(containerId);
+
+    if (!container) {
+      console.error(`Container with id '${containerId}' not found.`);
+      return;
+    }
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+      }
+      const files = await response.json();
+      const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.svg'];
+
+      files.forEach(file => {
+        if (
+          file.type === 'file' &&
+          imageExtensions.some(ext => file.name.toLowerCase().endsWith(ext))
+        ) {
+          const img = document.createElement('img');
+          img.src = file.download_url;
+          img.alt = file.name;
+          img.style.maxWidth = '200px';
+          img.style.margin = '8px';
+          container.appendChild(img);
+        }
+      });
+
+      if (container.children.length === 0) {
+        container.textContent = '이미지를 찾을 수 없습니다.';
+      }
+    } catch (error) {
+      console.error('Error loading images:', error);
+      container.textContent = '이미지를 불러오는 중 오류가 발생했습니다.';
+    }
+  }
+
+  loadGitHubImages('your-username', 'incheon-office-rental', 'images', 'github-image-gallery');
+  // <div id="github-image-gallery"></div>
+
+  const url = 'https://docs.google.com/spreadsheets/d/1LiTfiE3Es5jI3scT8F7gO9lVI6PVo-1y4wv8iKdN1BU/gviz/tq?tqx=out:json&sheet=Sheet1';
+
+  function getUsedColumnIndexes(rows) {
+    const usedIndexes = new Set();
+    rows.forEach(row => {
+      row.c.forEach((cell, idx) => {
+        if (cell?.v !== null && cell?.v !== undefined && cell?.v !== "") {
+          usedIndexes.add(idx);
+        }
+      });
+    });
+    return [...usedIndexes].sort((a, b) => a - b);
+  }
+
+
+  function parseRowsToLists(data) {
+    const rows = data.table.rows;
+    const cols = data.table.cols;
+
+    // ✅ 실제 데이터가 있는 열만 추출
+    const usedIndexes = getUsedColumnIndexes(rows);
+
+    // ✅ 헤더
+    const headerRow = usedIndexes.map(i => cols[i]?.label ?? "");
+
+    // ✅ 본문
+    const bodyRows = rows.map(row => {
+      return usedIndexes.map(i => row.c[i]?.v ?? "");
+    });
+
+    return [headerRow, ...bodyRows];
+  }
+
+function renderTable(parsedRows) {
+  const table = document.createElement("table");
+  table.className = "sheet-table";
+
+  const thead = document.createElement("thead");
+  const tbody = document.createElement("tbody");
+
+  parsedRows.forEach((row, rowIndex) => {
+    const tr = document.createElement("tr");
+    row.forEach(cell => {
+      const cellEl = document.createElement(rowIndex === 0 ? "th" : "td");
+      cellEl.textContent = cell;
+      tr.appendChild(cellEl);
+    });
+
+    if (rowIndex === 0) {
+      thead.appendChild(tr);
+    } else {
+      tbody.appendChild(tr);
+    }
+  });
+
+  table.appendChild(thead);
+  table.appendChild(tbody);
+  document.getElementById("sheet-table-wrapper").appendChild(table);
+}
+
+fetch(url)
+  .then(res => res.text())
+  .then(text => {
+    const match = text.match(/google\.visualization\.Query\.setResponse\((.*)\);/s);
+    if (!match) throw new Error("JSONP 패턴 매칭 실패");
+
+    const jsonStr = match[1];
+    const data = JSON.parse(jsonStr);
+    const parsedRows = parseRowsToLists(data);
+    renderTable(parsedRows);
+  })
+  .catch(console.error);
+
   </script>
 </body>
 </html>
@@ -431,6 +621,8 @@
 
 
   
+
+
 
 
 
