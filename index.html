@@ -34,6 +34,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      padding-top: 80px;
       padding-bottom: 180px;
     }
     .product-image {
@@ -195,14 +196,30 @@
 
     .tab-bar {
       display: flex;
-      width: 100%; 
-      margin-top: 0.5rem;
+      width: 100%;
       box-shadow: 0 1px 0 rgba(0,0,0,0.1);
       border-bottom: 2px solid #ccc;
-      position: relative;
-      z-index: 2;
       background-color: #f5f5f5;
+      
+      position: fixed;            /* ✅ 상단 고정 */
+      top: 0;
+      left: 0;
+      z-index: 1000;
+
+      transition: transform 0.4s ease, opacity 0.4s ease; /* ✅ 부드러운 전환 */
     }
+
+
+    .tab-bar.hide {
+      transform: translateY(-100%); /* 위로 사라짐 */
+      opacity: 0;
+    }
+
+    .tab-bar.show {
+      transform: translateY(0);     /* 다시 내려옴 */
+      opacity: 1;
+    }
+
 
     .tab {
       flex: 1;
@@ -302,6 +319,29 @@
         padding: 8px 12px;
       }
     }
+
+    #page-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      z-index: 1000;
+    }
+
+    #page-footer.hide {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    #page-footer.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -353,7 +393,7 @@
     </div>
   </div>
 
-  <footer>
+  <footer id="page-footer">
     <!-- 모바일에서 전화번호는 링크, 데스크탑은 텍스트 -->
   </footer>
 
@@ -452,8 +492,6 @@
         <span class="kakao-icon-wrapper">${getInstaIcon()}</span> Instagram
       </a>
     `;
-
-    // map-section 상단 전화번호 표시
     const mapSection = document.getElementById("map-section");
     const oldMapContact = mapSection.querySelector(".map-contact");
     if (oldMapContact) oldMapContact.remove();
@@ -491,6 +529,29 @@
       mql.addListener(e => renderContact(e.matches));
     }
 
+    let lastScroll = 0;
+    const foot = document.getElementById('page-footer');
+    const tab = document.querySelector('.tab-bar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > lastScroll + 5) {
+        foot.classList.add('hide');
+        foot.classList.remove('show');
+        tab.classList.add('hide');
+        tab.classList.remove('show');
+
+      } else if (currentScroll < lastScroll - 5) {
+        foot.classList.remove('hide');
+        foot.classList.add('show');
+        tab.classList.remove('hide');
+        tab.classList.add('show');
+      }
+
+      lastScroll = currentScroll;
+    });
+
     
 
     async function loadGitHubImages(username, repo, folderPath, containerId) {
@@ -520,6 +581,11 @@
           img.alt = file.name;
           img.style.width = '100%';
           img.style.objectFit = 'contain';
+          img.style.paddingLeft = '16px';
+          img.style.paddingRight = '16px';
+
+          // box-sizing도 패딩 포함되도록 지정
+          img.style.boxSizing = 'border-box';
           img.style.marginBottom = '16px'
           container.appendChild(img);
         }
@@ -555,14 +621,8 @@
   function parseRowsToLists(data) {
     const rows = data.table.rows;
     const cols = data.table.cols;
-
-    // ✅ 실제 데이터가 있는 열만 추출
     const usedIndexes = getUsedColumnIndexes(rows);
-
-    // ✅ 헤더
     const headerRow = usedIndexes.map(i => cols[i]?.label ?? "");
-
-    // ✅ 본문
     const bodyRows = rows.map(row => {
       return usedIndexes.map(i => row.c[i]?.v ?? "");
     });
