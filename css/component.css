@@ -36,35 +36,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+  }  
   
-  /* 아이콘 래퍼 */
-  .whatsapp-icon-wrapper {
-    display: inline-flex;
-    background-color: #25D366;
-    border-radius: 4px;
-    padding: 4px;
-    margin-right: 6px;
-    width: 24px;
-    height: 24px;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .whatsapp-icon {
-    fill: white;
-    width: 16px;
-    height: 16px;
-    display: block;
-  }
-  
-  .kakao-icon-wrapper {
+  .icon-wrapper {
     display: inline-flex;
     border-radius: 4px;
     overflow: hidden;
     margin-right: 6px;
     width: 31px;
     height: 31px;
+    align-items: center;
+    justify-content: center;
+  }
+  .whatsapp-icon-wrapper {
+    display: inline-flex;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 6px;
+    width: 25px;
+    height: 25px;
     align-items: center;
     justify-content: center;
   }

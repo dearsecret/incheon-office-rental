@@ -7,7 +7,7 @@ function renderContact(isMobile) {
       parts.push(`
         <a href="https://wa.me/${contactInfo.whatsappNumber}" target="_blank" class="contact-button whatsapp-button">
         <span class="whatsapp-icon-wrapper">
-          <img src="assets/icons/whatsapp.svg" alt="WhatsApp" class="whatsapp-icon" /> 
+          <img src="assets/icons/whatsapp.svg" alt="WhatsApp" class="kakao-icon"/> 
         </span>
         ${content.contactWhatsApp}
         </a>
@@ -17,7 +17,7 @@ function renderContact(isMobile) {
     if (contactInfo.kakaoId) {
       parts.push(`
         <a href="https://pf.kakao.com/${contactInfo.kakaoId}/chat" target="_blank" class="contact-button kakao-button">
-        <span class="kakao-icon-wrapper">
+        <span class="icon-wrapper">
           <img src="assets/icons/kakaotalk.svg" alt="KakaoTalk" class="kakao-icon"/>
         </span>
         ${content.contactKakao}
@@ -28,7 +28,7 @@ function renderContact(isMobile) {
     if (contactInfo.instagramId) {
       parts.push(`
         <a href="https://instagram.com/${contactInfo.instagramId}" target="_blank" class="contact-button insta-button">
-        <span class="kakao-icon-wrapper">
+        <span class="icon-wrapper">
           <img src="assets/icons/instagram.svg" alt="Instagram" class="instagram-icon"/>
         </span>
         Instagram
