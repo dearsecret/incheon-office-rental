@@ -1,0 +1,176 @@
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(255, 75, 43, 0.4);
+    transition: all 0.3s ease;
+    min-width: 180px;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .contact-button:hover {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    transform: translateY(-2px);
+  }
+  
+  .contact-button:active {
+    transform: scale(0.97);
+  }
+  
+  /* 전화번호 텍스트 */
+  .phone-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+    user-select: text;
+    pointer-events: none;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 아이콘 래퍼 */
+  .whatsapp-icon-wrapper {
+    display: inline-flex;
+    background-color: #25D366;
+    border-radius: 4px;
+    padding: 4px;
+    margin-right: 6px;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .whatsapp-icon {
+    fill: white;
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+  
+  .kakao-icon-wrapper {
+    display: inline-flex;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 6px;
+    width: 31px;
+    height: 31px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .kakao-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+
+  .instagram-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  
+  .tab-bar {
+    display: flex;
+    width: 100%;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+    border-bottom: 2px solid #ccc;
+    background-color: #f5f5f5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  
+  .tab-bar.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  .tab-bar.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .tab {
+    flex: 1;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+    background: #e0e0e0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .tab:hover {
+    background: #d0d0d0;
+  }
+  
+  .tab.active {
+    background: #fff;
+    border-bottom: 3px solid #888;
+    color: #333;
+  }
+
+  #page-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* 필요에 따라 변경 */
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    z-index: 1000;
+  }
+  
+  #page-footer.hide {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  #page-footer.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  
+  /* iframe 래퍼 */
+  .iframe-border-wrapper {
+    position: relative;
+    width: 100vw;
+    max-width: 550px;
+    padding-bottom: 58%;
+    margin: 0 auto 24px;
+    border: 3px solid #4e54c8;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(78, 84, 200, 0.3);
+  }
+  
+  .iframe-border-wrapper .iframe-inner {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }

@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    text-align: center;
+  }
+  
+  body {
+    font-family: 'Pretendard', sans-serif;
+    background: linear-gradient(135deg, #f8fbff, #ecf2ff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-bottom: 180px;
+  }

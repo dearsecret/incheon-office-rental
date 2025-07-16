@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: 1rem;
+    }
+  
+    .contact-button,
+    .phone-text {
+      min-width: 100%;
+    }
+  
+    .sheet-table {
+      font-size: 0.85rem;
+    }
+  
+    .sheet-table th,
+    .sheet-table td {
+      padding: 8px 12px;
+      white-space: normal;
+      min-width: auto;
+    }
+  }
+
+  

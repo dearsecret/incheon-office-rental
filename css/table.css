@@ -1,0 +1,41 @@
+#sheet-table-wrapper {
+    overflow-x: auto;
+    text-align: center;
+  }
+  
+  .sheet-table {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    width: auto;
+    max-width: 100%;
+    min-width: 50%;
+    margin: 26px auto;
+    table-layout: auto;
+  }
+  
+  .sheet-table thead {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white;
+  }
+  
+  .sheet-table th,
+  .sheet-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    white-space: nowrap;
+    min-width: 100px;
+    box-sizing: border-box;
+  }
+  
+  .sheet-table tbody tr:nth-child(odd) {
+    background-color: #f9f9ff;
+  }
+  
+  .sheet-table tbody tr:hover {
+    background-color: #eef0ff;
+  }
+  

@@ -1,0 +1,14 @@
+.product-image {
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .product-image img {
+    width: 100%;
+    max-height: calc(100vh - 180px);
+    object-fit: contain;
+  }
