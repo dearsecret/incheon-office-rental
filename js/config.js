@@ -19,6 +19,7 @@ allowfullscreen
 
 const googleMap = `<iframe
 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.7804099052237!2d126.64737861159205!3d37.41866487196074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b782af8794c05%3A0x662387d70955137e!2z7J247LKc6rSR7Jet7IucIOyXsOyImOq1rCDriqXtl4jrjIDroZwgMTg3!5e0!3m2!1sko!2skr!4v1752427368589!5m2!1sko!2skr"
+class="iframe-map"
 allowfullscreen=""
 loading="lazy"
 referrerpolicy="no-referrer-when-downgrade"

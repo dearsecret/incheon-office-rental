@@ -15,6 +15,41 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 80px;
     padding-bottom: 180px;
+  }
+
+  h2 {
+    font-size: 1.75rem; /* 원하는 크기로 조절 가능 */
+    color: #333; /* 진한 회색 (#333, #2c2c2c, #444 등 다양하게 가능) */
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+  
+  p {
+    font-size: 1rem; /* 조금 더 읽기 쉬운 크기 */
+    color: #555; /* 약간 연한 회색으로 대비 */
+    line-height: 1.6;
+  }
+
+
+  header {
+    background-color: #1f1f1f;
+    padding: 80px 1rem 32px; /* 상:80px, 좌우:1rem, 하:32px */
+    width: 100%;
+    text-align: center;
+    color: #f5f5f5;
+    border-bottom: 1px solid #333;
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  
+  header p {
+    font-size: 1rem;
+    color: #cccccc;
+    line-height: 1.4;
   }

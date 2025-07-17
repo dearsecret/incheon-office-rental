@@ -25,19 +25,7 @@
   .contact-button:active {
     transform: scale(0.97);
   }
-  
-  /* 전화번호 텍스트 */
-  .phone-text {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #222;
-    user-select: text;
-    pointer-events: none;
-    min-width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }  
+
   
   .icon-wrapper {
     display: inline-flex;
@@ -75,18 +63,7 @@
     display: block;
   }
   
-  .tab-bar {
-    display: flex;
-    width: 100%;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.1);
-    border-bottom: 2px solid #ccc;
-    background-color: #f5f5f5;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-  }
+
   
   .tab-bar.hide {
     transform: translateY(-100%);
@@ -97,14 +74,28 @@
     transform: translateY(0);
     opacity: 1;
   }
+
+
+  .tab-bar {
+    display: flex;
+    width: 100%;
+    background-color: #2c2c2c; /* 부드러운 진회색 */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
   
   .tab {
     flex: 1;
     padding: 1rem 0;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #555;
-    background: #e0e0e0;
+    color: #eaeaea; /* 연한 회색 텍스트 */
+    background: transparent;
     border: none;
     outline: none;
     cursor: pointer;
@@ -113,14 +104,18 @@
   }
   
   .tab:hover {
-    background: #d0d0d0;
+    background: #3a3a3a; /* 마우스 오버 시 조금 더 진한 회색 */
   }
   
   .tab.active {
-    background: #fff;
-    border-bottom: 3px solid #888;
-    color: #333;
+    background: linear-gradient(135deg, #111111, #444444);
+    border-bottom: 3px solid #ffcc00;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
   }
+  
+  
 
   #page-footer {
     position: fixed;

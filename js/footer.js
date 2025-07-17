@@ -44,17 +44,12 @@ function renderContact(isMobile) {
     if (contactInfo.phone) {
       const mapContact = document.createElement("div");
       mapContact.className = "map-contact";
-      mapContact.style.textAlign = "center";
-      mapContact.style.marginBottom = "1rem";
-      mapContact.style.fontSize = "1rem";
-      mapContact.style.fontWeight = "bold";
   
       if (isMobile) {
         const phoneLink = document.createElement("a");
         phoneLink.href = `tel:${contactInfo.phone}`;
         phoneLink.textContent = content.contactPhone;
-        phoneLink.style.textDecoration = "none";
-        phoneLink.style.color = "#333";
+        phoneLink.className = "phone-link active-phone";
         mapContact.appendChild(phoneLink);
       } else {
         mapContact.textContent = content.contactPhone;
