@@ -5,7 +5,7 @@ const contactInfo = {
     whatsappNumber: "821044768444", // 국가번호 포함
     instagramId: "admin.krkr",
   };
-const sheetUrl = 'https://docs.google.com/spreadsheets/d/1LiTfiE3Es5jI3scT8F7gO9lVI6PVo-1y4wv8iKdN1BU/gviz/tq?tqx=out:json&sheet=Sheet1'
+const sheetUrl = "https://docs.google.com/spreadsheets/d/1LiTfiE3Es5jI3scT8F7gO9lVI6PVo-1y4wv8iKdN1BU/edit?gid=0#gid=0";
 
 const spreadsheet = `<iframe
 class="iframe-inner"

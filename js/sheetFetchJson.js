@@ -1,59 +1,137 @@
-async function fetchAndConvertGoogleSheet(sheetUrl) {
-    const data = await fetchGoogleSheetJson(sheetUrl);
-    if (!data) return null;
-    return convertDriveLinksInAllColumns(data);
-  }
-  
-
-async function fetchGoogleSheetJson(sheetUrl) {
-    try {
-      const idMatch = sheetUrl.match(/\/d\/([a-zA-Z0-9-_]+)/);
-      if (!idMatch) throw new Error('Invalid spreadsheet URL: cannot find ID');
-      const spreadsheetId = idMatch[1];
-      const gidMatch = sheetUrl.match(/[?&]gid=(\d+)/);
-      const gid = gidMatch ? gidMatch[1] : '0';
-      const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${gid}`;
-      const response = await fetch(csvUrl);
-      if (!response.ok) throw new Error('Failed to fetch CSV data');
-      const csvText = await response.text();
-  
-      const rows = csvText.trim().split('\n').map(row => row.split(','));
-      const headers = rows[0];
-      const data = rows.slice(1).map(row => {
-        const obj = {};
-        headers.forEach((key, i) => {
-          obj[key] = row[i] || '';
-        });
-        return obj;
-      });
-      return data;
-    } catch (error) {
-      console.error(error);
-      return null;
+export async function fetchGoogleSheetJson(sheetUrl) {
+  try {
+    const idMatch = sheetUrl.match(/\/d\/([a-zA-Z0-9-_]+)/);
+    if (!idMatch) throw new Error('Invalid spreadsheet URL: cannot find ID');
+    const spreadsheetId = idMatch[1];
+    const gidMatch = sheetUrl.match(/[?&]gid=(\d+)/);
+    const gid = gidMatch ? gidMatch[1] : '0';
+    const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${gid}`;
+    const response = await fetch(csvUrl);
+    if (!response.ok) throw new Error('Failed to fetch CSV data');
+    const csvText = await response.text();
+    let rows = csvText.trim().split(/\r?\n/).map(row => row.split(','));
+    while (rows.length && rows[0].every(cell => cell.trim() === '')) {
+      rows.shift();
     }
+    if (rows.length === 0) return [];
+    let firstNonEmptyColIndex = 0;
+    const colCount = rows[0].length;
+    for (let col = 0; col < colCount; col++) {
+      const isEmptyCol = rows.every(row => {
+        return (row[col] || '').trim() === '';
+      });
+
+      if (isEmptyCol) {
+        firstNonEmptyColIndex++;
+      } else {
+        break;
+      }
+    }
+    if (firstNonEmptyColIndex > 0) {
+      rows = rows.map(row => row.slice(firstNonEmptyColIndex));
+    }
+    return rows; 
+  } catch (error) {
+    console.error(error);
+    return null;
   }
+}
+
 
 function isGoogleDriveLink(url) {
-    return /https:\/\/drive\.google\.com\/(file\/d\/|open\?id=)/.test(url);
-  }
-  
+  return /https:\/\/drive\.google\.com\/(file\/d\/|open\?id=)/.test(url);
+}
 
 function convertDriveLinkToDirectUrl(url) {
-    const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
-    const fileId = idMatch ? idMatch[1] : null;
-    if (!fileId) return null;
-    return `https://drive.google.com/uc?export=view&id=${fileId}`;
-  }
-  
+  const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+  const fileId = idMatch ? idMatch[1] : null;
+  if (!fileId) return null;
+  return `https://drive.google.com/uc?export=view&id=${fileId}`;
+}
+
+// 배열 행 데이터 형태에 맞게 수정
 function convertDriveLinksInAllColumns(data) {
-    return data.map(item => {
-      Object.keys(item).forEach(col => {
-        const val = item[col];
-        if (val && isGoogleDriveLink(val)) {
-          const directUrl = convertDriveLinkToDirectUrl(val);
-          if (directUrl) item[col] = directUrl;
-        }
-      });
-      return item;
-    });
+  return data.map(row => 
+    row.map(cell => {
+      if (cell && isGoogleDriveLink(cell)) {
+        const directUrl = convertDriveLinkToDirectUrl(cell);
+        return directUrl || cell;
+      }
+      return cell;
+    })
+  );
+}
+
+export async function fetchAndConvertGoogleSheet(sheetUrl) {
+  const data = await fetchGoogleSheetJson(sheetUrl);
+  if (!data) return null;
+  return convertDriveLinksInAllColumns(data);
+}
+
+export async function renderImagesFromSheet(sheetUrl) {
+  const loading = document.getElementById('loading');
+  const container = document.getElementById('image-container');
+
+  loading.style.display = 'block';
+  container.style.display = 'none';
+  container.innerHTML = ''; // 이전 이미지 제거
+
+  const rawData = await fetchAndConvertGoogleSheet(sheetUrl);
+  if (!rawData) {
+    loading.textContent = '데이터를 불러오지 못했습니다.';
+    return;
   }
+
+  // 배열 형태이므로 각 행의 각 셀을 순회
+  const safeImages = rawData
+    .flat()
+    .filter(val => typeof val === 'string' && val.startsWith('https://drive.google.com/uc?export=view&id='));
+
+  if (safeImages.length === 0) {
+    loading.textContent = '표시할 이미지가 없습니다.';
+    return;
+  }
+
+  safeImages.forEach(url => {
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Image';
+    img.style.width = '200px';
+    img.style.margin = '10px';
+    img.loading = 'lazy';
+    img.onerror = () => {
+      img.style.display = 'none';
+    };
+    container.appendChild(img);
+  });
+
+  loading.style.display = 'none';
+  container.style.display = 'flex';
+}
+
+/* <div id="loading">이미지를 불러오는 중...</div>
+<div id="image-container" style="display: none;"></div> */
+
+
+// #image-container {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     padding: 1rem;
+//   }
+  
+//   #image-container img {
+//     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+//     transition: transform 0.2s;
+//   }
+  
+//   #image-container img:hover {
+//     transform: scale(1.05);
+//   }
+
+// #loading {
+//     text-align: center;
+//     font-size: 1.2rem;
+//     padding: 2rem;
+//     color: #555;
+//   }
