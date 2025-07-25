@@ -42,7 +42,7 @@
     function openKakaoLogin() {
       const clientId = "44c5a278a01141a3be48d078ce631e02";
       const redirectUri = encodeURIComponent("https://script.google.com/macros/s/AKfycbxohIcg7SY6ANlSMX8Mn6z-9-k-_OFWxRio1UAPR0AMPAifN5yVmhbE_dmQdniiW9d6/exec");
-      const authUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=profile_nickname,account_email`;
+      const authUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=talk_message`;
       window.location.href = authUrl; 
       }
 </script>
