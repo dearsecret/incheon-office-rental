@@ -56,6 +56,32 @@
   }
 
 
+  #kakaoJoinBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* 아이콘과 텍스트 간격 */
+    padding: 12px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  .kakao-btn-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+  
+  .kakao-btn-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  
+
   .instagram-icon {
     width: 100%;
     height: 100%;
@@ -85,7 +111,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10;
     transition: transform 0.4s ease, opacity 0.4s ease;
   }
   

@@ -109,29 +109,3 @@ export async function renderImagesFromSheet(sheetUrl) {
   container.style.display = 'flex';
 }
 
-/* <div id="loading">이미지를 불러오는 중...</div>
-<div id="image-container" style="display: none;"></div> */
-
-
-// #image-container {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: center;
-//     padding: 1rem;
-//   }
-  
-//   #image-container img {
-//     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-//     transition: transform 0.2s;
-//   }
-  
-//   #image-container img:hover {
-//     transform: scale(1.05);
-//   }
-
-// #loading {
-//     text-align: center;
-//     font-size: 1.2rem;
-//     padding: 2rem;
-//     color: #555;
-//   }

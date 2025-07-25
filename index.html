@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="css/image.css" />
     <link rel="stylesheet" href="css/table.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/fab.css" />
   
     <script type="application/ld+json">
     {
@@ -111,6 +112,30 @@
     <script src="js/sheet.js" type="module"></script>
     <script src="js/scroll.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/fab.js"></script>
+
+
+    <!-- 🔵 FAB 버튼 및 모달 HTML -->
+    <button id="fab-signup">회원가입</button>
+
+    <div id="privacyModal">
+      <div class="modal-content">
+        <iframe src="https://song-do.com/privacy/"></iframe>
+        <div class="modal-actions">
+          <label>
+            <input type="checkbox" id="agreeCheck" />
+            개인정보처리방침에 동의합니다.
+          </label>
+          <br /><br />
+          <button id="kakaoJoinBtn" disabled>
+            <span class="kakao-btn-icon">
+              <img src="assets/icons/kakaotalk.svg" alt="KakaoTalk" />
+            </span>
+            카카오톡으로 가입하기
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 
