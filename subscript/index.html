@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>카카오 로그인 처리 중...</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background-color: #FEE500;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #3C1E1E;
+    }
+
+    button {
+      background-color: #3C1E1E;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5A2D2D;
+    }
+  </style>
+  <script>
+    function openKakaoLogin() {
+      const clientId = "44c5a278a01141a3be48d078ce631e02";
+      const redirectUri = encodeURIComponent("https://script.google.com/macros/s/AKfycbzi8JIPeu1IG08O36KWyKFBUbuJO9OA4lBrhdz-wAGTp6SIC7uF09DK9AohR3PCjF_7/exec");
+      const authUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=talk_message`;
+      window.open(authUrl, "kakaoLogin", "width=500,height=600");
+    }
+
+    window.addEventListener("message", (event) => {
+      if (event.data === "kakao-auth-success") {
+        alert("로그인 성공! 🎉");
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>카카오 로그인 처리 중...</h1>
+  <button onclick="openKakaoLogin()">카카오 로그인</button>
+</body>
+</html>
