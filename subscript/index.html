@@ -16,7 +16,7 @@
     (async function() {
       const clientId = "44c5a278a01141a3be48d078ce631e02";
       const redirectUri = "https://song-do.com/subscript/";
-      const gasUrl = "https://script.google.com/macros/s/AKfycbxAnfkuzo-AEhdimPUv3kCwNj_Wc8nI2CnyVy5XMGQ5lbPcOaBCy5U6xwhC5MpHHMHt/exec"; 
+      const gasUrl = "https://script.google.com/macros/s/AKfycbw9qRYJTT1lxhGbhs8pnd36X1ubBmbZ-l8kcT_68eHxk5CsnMbzwcMvBs6mz4xuffIO/exec"; 
 
       function getUrlParams() {
         const params = {};
@@ -57,9 +57,11 @@
         localStorage.setItem("oauth_state", newState);
         await fetch(gasUrl, {
           method: "POST",
+          redirect: "follow", // 꼭 포함
           body: JSON.stringify({ action: "registerState", state: newState }),
-          headers: { "Content-Type": "application/json" }
+          headers: { "Content-Type": "text/plain;charset=utf-8" }, // 여기서 text/plain으로 설정해야 preflight 안 뜸
         });
+
 
         const kakaoLoginUrl = getKakaoAuthUrl(newState);
         window.location.href = kakaoLoginUrl;
@@ -75,6 +77,7 @@
         setMessage("로그인 처리 중입니다...");
         const resp = await fetch(`${gasUrl}?code=${encodeURIComponent(params.code)}&state=${encodeURIComponent(params.state)}`, {
           method: "GET",
+          redirect: "follow", // 기본값이지만 명확히 써주면 좋음
           headers: { "Accept": "application/json" }
         });
 
