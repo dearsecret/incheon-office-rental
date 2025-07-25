@@ -121,18 +121,26 @@
     <div id="privacyModal">
       <div class="modal-content">
         <iframe src="https://song-do.com/privacy/"></iframe>
+
+        <h3 class="required-title">필수 항목</h3> 
         <div class="modal-actions">
-          <label>
+          <input type="text" id="userName" placeholder="이름" required />
+          <input type="date" id="userBirth" placeholder="생년월일" required />
+          <input type="email" id="userEmail" placeholder="이메일 주소" required />
+          <div class="gender-group">
+            <label><input type="radio" name="gender" value="male" /> 남자</label>
+            <label><input type="radio" name="gender" value="female" /> 여자</label>
+          </div>
+          <label class="checkbox-label">
             <input type="checkbox" id="agreeCheck" />
             개인정보처리방침에 동의합니다.
           </label>
           <br /><br />
           <button id="kakaoJoinBtn" disabled>
-            <span class="kakao-btn-icon">
-              <img src="assets/icons/kakaotalk.svg" alt="KakaoTalk" />
-            </span>
-            카카오톡으로 가입하기
+            <img src="assets/icons/kakaotalk.svg" alt="KakaoTalk" class="kakao-btn-icon" />
+            카카오톡으로 회원가입
           </button>
+          
         </div>
       </div>
     </div>

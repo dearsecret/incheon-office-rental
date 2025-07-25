@@ -1,38 +1,19 @@
-#kakaoJoinBtn {
-  background-color: #ccc; 
-  color: #fff;            
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  cursor: not-allowed;
-  width: 100%;
-  font-weight: bold;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-#kakaoJoinBtn.enabled {
-  background-color: #ffeb3b; 
-  color: #5d4037;            
-  cursor: pointer;
-}
-
 #fab-signup {
   position: fixed;
-  top: 24px; 
-  right: 12px;
-  z-index: 20;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
   background: #FEE500;
   color: #000;
   font-weight: bold;
   border: none;
   border-radius: 50px;
   padding: 14px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); 
-  transition: box-shadow 0.2s ease;
 }
 
-/* 개인정보처리방침 모달 */
+/* 모달 */
 #privacyModal {
   display: none;
   position: fixed;
@@ -50,17 +31,77 @@
   overflow: hidden;
 }
 
+/* iframe */
 #privacyModal iframe {
   width: 100%;
-  height: 400px;
+  height: 300px;
   border: none;
 }
 
-#privacyModal .modal-actions {
+/* 입력 그룹 */
+.modal-actions {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-#privacyModal .modal-actions label {
+.modal-actions input[type="text"],
+.modal-actions input[type="date"],
+.modal-actions input[type="email"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.gender-group {
+  display: flex;
+  gap: 16px;
+  font-size: 0.95rem;
+}
+
+/* 체크박스 */
+.checkbox-label {
+  font-size: 0.9rem;
+}
+
+/* 카카오 가입 버튼 */
+#kakaoJoinBtn {
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: not-allowed;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#kakaoJoinBtn.enabled {
+  background-color: #FEE500;
+  color: #000;
+  cursor: pointer;
+}
+
+
+.kakao-btn-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
   display: inline-block;
-  margin-bottom: 1rem;
+}
+
+.required-title {
+  padding: 0.5rem 0 0.5rem 1rem; /* 위 0.5rem, 오른쪽 0, 아래 0.5rem, 왼쪽 1rem */
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
 }
