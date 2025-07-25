@@ -41,7 +41,7 @@
   <script>
     function openKakaoLogin() {
       const clientId = "44c5a278a01141a3be48d078ce631e02";
-      const redirectUri = encodeURIComponent("https://script.google.com/macros/s/AKfycbxHX_N21SbnSuJKbdOr-XJk9-Rn-cXPoOVPNq3FAc7Gvioa48d77rSTkmtUpGjmFMPV/exec");
+      const redirectUri = encodeURIComponent("https://script.google.com/macros/s/AKfycbxqskzDioE4caYXw7G9cnT9w4G8xrVBzl5Ynr7XxZT410VrLdwXxw8JnnnLskbBKGo7/exec");
       const authUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=talk_message`;
       window.open(authUrl, "kakaoLogin", "width=500,height=600");
     }
