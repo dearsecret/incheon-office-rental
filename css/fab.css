@@ -1,6 +1,5 @@
 #fab-signup {
   position: fixed;
-  top: 60px;
   right: 16px;
   z-index: 999;
   background: #FEE500;
@@ -12,7 +11,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 
-  transition: top 0.3s ease;
+  transition: bottom 0.3s ease;
 }
 
 /* 모달 */
