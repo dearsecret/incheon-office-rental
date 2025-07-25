@@ -2,53 +2,97 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>카카오 로그인 처리 중...</title>
+  <title>카카오 로그인 처리</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-      background-color: #FEE500;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #3C1E1E;
-    }
-
-    button {
-      background-color: #3C1E1E;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #5A2D2D;
-    }
+    body { font-family: Arial, sans-serif; padding: 2rem; text-align: center; }
+    #message { margin-top: 1.5rem; font-size: 1.2rem; }
   </style>
-  <script>
-    function openKakaoLogin() {
-      const clientId = "44c5a278a01141a3be48d078ce631e02";
-      const redirectUri = encodeURIComponent("https://script.google.com/macros/s/AKfycbzZp2reoDll4WF1DM4qa47US2kEqLE7rKbvdrHG1egerSmR231wkfLIePVMNulGz5Lo/exec");
-      const authUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=talk_message`;
-      window.location.href = authUrl; 
-      }
-</script>
 </head>
 <body>
-  <h1>카카오 로그인 처리 중...</h1>
-  <button onclick="openKakaoLogin()">카카오 로그인</button>
+  <h1>카카오 로그인 중...</h1>
+  <div id="message">잠시만 기다려 주세요.</div>
+
+  <script>
+    (async function() {
+      const clientId = "44c5a278a01141a3be48d078ce631e02";
+      const redirectUri = "https://song-do.com/subscript/";
+      const gasUrl = "https://script.google.com/macros/s/AKfycbxAnfkuzo-AEhdimPUv3kCwNj_Wc8nI2CnyVy5XMGQ5lbPcOaBCy5U6xwhC5MpHHMHt/exec"; 
+
+      function getUrlParams() {
+        const params = {};
+        location.search.substring(1).split("&").forEach(pair => {
+          const [key, value] = pair.split("=");
+          if (key) params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+        });
+        return params;
+      }
+
+      function generateState() {
+        if (crypto && crypto.randomUUID) {
+          return crypto.randomUUID();
+        }
+        return Math.random().toString(36).substring(2) + Date.now().toString(36);
+      }
+
+      function getKakaoAuthUrl(state) {
+        const baseUrl = "https://kauth.kakao.com/oauth/authorize";
+        const params = new URLSearchParams({
+          response_type: "code",
+          client_id: clientId,
+          redirect_uri: redirectUri,
+          state: state
+        });
+        return `${baseUrl}?${params.toString()}`;
+      }
+
+      function setMessage(text) {
+        document.getElementById("message").textContent = text;
+      }
+
+      const params = getUrlParams();
+
+      if (!params.code || !params.state) {
+        const newState = generateState();
+        localStorage.setItem("oauth_state", newState);
+        await fetch(gasUrl, {
+          method: "POST",
+          body: JSON.stringify({ action: "registerState", state: newState }),
+          headers: { "Content-Type": "application/json" }
+        });
+
+        const kakaoLoginUrl = getKakaoAuthUrl(newState);
+        window.location.href = kakaoLoginUrl;
+        return;
+      }
+      const savedState = localStorage.getItem("oauth_state");
+      if (!savedState || savedState !== params.state) {
+        setMessage("잘못된 state 값입니다. 로그인 중단.");
+        return;
+      }
+
+      try {
+        setMessage("로그인 처리 중입니다...");
+        const resp = await fetch(`${gasUrl}?code=${encodeURIComponent(params.code)}&state=${encodeURIComponent(params.state)}`, {
+          method: "GET",
+          headers: { "Accept": "application/json" }
+        });
+
+        const data = await resp.json();
+
+        if (data.error) {
+          setMessage("로그인 실패: " + data.error);
+          console.error("오류 상세:", data);
+        } else {
+          setMessage("로그인 성공! 환영합니다.");
+          console.log("성공 데이터:", data);
+        }
+
+      } catch (e) {
+        setMessage("로그인 처리 중 오류가 발생했습니다.");
+        console.error(e);
+      }
+
+    })();
+  </script>
 </body>
 </html>
