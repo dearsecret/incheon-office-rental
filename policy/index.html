@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리비 산출 방식 - 송도비취타운 사무실</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', Arial, sans-serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      line-height: 1.6;
+      color: #333;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #004aad;
+      border-bottom: 2px solid #004aad;
+      padding-bottom: 0.3rem;
+    }
+    ul {
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .data-table thead tr {
+      background-color: #eef2f7;
+    }
+
+    .data-table th,
+    .data-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+  </style>
+</head>
+<body>
+    <h2>법령 및 기준 근거</h2>
+    <ul>
+        <li><strong>상가건물 임대차보호법 제3조의3</strong>: 임대인의 정보제공 의무</li>
+        <li><strong>공정거래위원회 관리비 부과 관련 가이드라인</strong>: 부당청구 금지 및 투명성 확보</li>
+    </ul>
+    <p><strong>인천시 연수구 능허대로 187 4층</strong>의 관리비는 아래와 같은 기준에 따라 산출 및 부과됩니다.</p>    
+    <h1>관리비 산출 방식</h1>
+    <h2>1. 전기요금 산정 방식</h2>
+    <p>전기요금은 <strong>한국전력공사의 산출방식</strong>을 준용하며, 각 항목은 다음 기준에 따라 부과됩니다.</p>
+    <ul>
+        <li><strong>➀ 기본요금</strong>: 해당 층 전체 면적 대비 각 호실의 면적 비율에 따라 산정됩니다.</li>
+        <li><strong>➁ 전력사용요금</strong>: 매월 <strong>19일부터 익월 18일까지</strong> 측정된 전력 사용량 중, 해당 호실의 사용 비율을 기준으로 사용요금을 산출합니다.</li>
+        <li><strong>➂ 기후환경요금 및 기타요금</strong>: 전기요금계에서 기본요금과 전력사용요금을 제외한 항목으로, <strong>전력사용요금 비율에 비례</strong>하여 산정됩니다.</li>
+        <li><strong>➃ 전기요금계</strong>: ➀+➁+➂ 의 합계로 구성됩니다.</li>
+        <li><strong>➄ 부가가치세</strong>: ➃의 <strong>10%</strong>가 부가세로 부과됩니다.</li>
+        <li><strong>➅ 전력기반요금</strong>: ➃의 <strong>3.7%</strong>가 전력기반기금으로 부과됩니다.</li>
+        <li><strong>➆ 공용전기요금</strong>: 공용전기요금은 관리단 기준 <strong>27%</strong>를 적용하지만, 해당 층의 실제 면적 비율이 <strong>16.414%</strong>이므로, 이 비율을 반영하여 60.79% 조정된 금액의 해당 호실의 면적 비율만큼 부과됩니다.</li>
+        <li><strong>전기요금합계</strong>: ➃+➄+➅+➆ 의 합계로 구성됩니다.</li>
+    </ul>
+
+    <h2>2. 관리비</h2>
+    <p>공동주택관리법 제52조(회계의 보고) 동법 시행령 제43조(회계보고 및 공개)에도 불구하고,<br> 해당 관리단의 미납과 공용수익금 및 회계장부 미공개로 인하여 부득이하게 <strong>임대차 계약서에 명시된 금액</strong>을 기준으로 고정 부과됩니다.</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>업체 / 담당 연락처</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>➀ 승강기 정기검침비</td><td>하나엘레베이터 (032-431-4555)</td></tr>
+        <tr><td>➁ 전기안전관리자 선임비</td><td>효성전기 (032-463-3665)</td></tr>
+        <tr><td>➂ 소방안전점검비</td><td>태건소방 (032-556-8103)</td></tr>
+        <tr><td>➃ 청소</td><td>임대인 (010-3922-1532)</td></tr>
+        <tr><td>➄ 정화조 청소</td><td>인천시 환경보전과 (032-749-7932)</td></tr>
+        <tr><td>➅ 수도요금</td><td>인천 남동부수도사업소 (032-720-3521)</td></tr>
+        <tr><td>➆ 화재보험</td><td>삼성화재</td></tr>
+      </tbody>
+    </table>
+    
+    <h2>3. 명세서 발급일</h2>
+    <p>
+        본 명세서는 <strong>OPM(Open Platform for Merchants) API</strong>를 통해 자동 연동되며, 
+        매월 <strong>20일 이후</strong> 전월 19일부터 익월 18일까지의 사용량을 기준으로 <strong>자동 발급</strong>됩니다.
+    </p>
+
+
+    <h2>4. 청구요금데이터 항목</h2>
+    <p>OPM API를 통해 연동되는 전기요금 데이터 항목은 아래와 같습니다.</p>
+    
+    <table class="data-table">
+      <thead>
+        <tr>
+        <th>항목명</th>
+        <th>설명</th>
+        <th>단위/형식</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>custNo</td><td>고객번호 (지역코드 2자리 + 일련번호 8자리)</td><td>10자리</td></tr>
+        <tr><td>bill_ym</td><td>청구년월</td><td>YYYYMM</td></tr>
+        <tr><td>mr_ymd</td><td>정기검침일</td><td>DD</td></tr>
+        <tr><td>move_ymd</td><td>이사정산일</td><td>YYYYMMDD</td></tr>
+        <tr><td>bill_aply_pwr</td><td>요금적용전력</td><td>kW</td></tr>
+        <tr><td>base_bill</td><td>기본요금</td><td>원</td></tr>
+        <tr><td>kwh_bill</td><td>전력량요금</td><td>원</td></tr>
+        <tr><td>dc_bill</td><td>할인공제계</td><td>원</td></tr>
+        <tr><td>req_bill</td><td>전기요금계</td><td>원</td></tr>
+        <tr><td>req_amt</td><td>청구요금</td><td>원</td></tr>
+        <tr><td>lload_usekwh</td><td>경부하 사용량</td><td>kWh</td></tr>
+        <tr><td>mload_usekwh</td><td>중부하 사용량</td><td>kWh</td></tr>
+        <tr><td>maxload_usekwh</td><td>최대부하 사용량</td><td>kWh</td></tr>
+        <tr><td>lload_needle</td><td>경부하 당월 지침</td><td>kWh</td></tr>
+        <tr><td>mload_needle</td><td>중부하 당월 지침</td><td>kWh</td></tr>
+        <tr><td>maxload_needle</td><td>최대부하 당월 지침</td><td>kWh</td></tr>
+        <tr><td>jn_pwrfact</td><td>진상 역률 (60%~90%는 기본요금 추가)</td><td>소수 3자리</td></tr>
+        <tr><td>ji_pwrfact</td><td>지상 역률</td><td>소수 3자리</td></tr>
+      </tbody>
+    </table>
+    
+    <h2></h2>
+    <p>=============================TODO : 한전 청구데이터=============================</p>
+    
+    <h2></h2>
+    <p>위 기준은 투명하고 공정한 관리비 부과를 위한 내부 기준이며, 필요 시 변경될 수 있습니다. 변경 시 사전 고지 드릴 예정입니다.</p>
+</body>
+</html>
